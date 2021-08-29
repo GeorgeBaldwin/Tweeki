@@ -41,7 +41,7 @@ mix.js('resources/scripts/custom.js', 'public/custom/js')
    .options({
       processCssUrls: false
    })
-   .copyDirectory('resources/fonts', 'public/custom/fonts');
+  // .copyDirectory('resources/fonts', 'public/custom/fonts');
 
 mix.browserSync({ proxy: process.env.MIX_LOCAL_PROXY_URL });
 
