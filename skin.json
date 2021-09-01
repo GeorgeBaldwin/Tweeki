@@ -204,7 +204,7 @@
 		"TweekiSkinFooterIcons": false,
 		"TweekiSkinPageRenderer": "self::renderPage",
 		"TweekiSkinNavbarRenderer": "self::renderNavbar4",
-		"TweekiSkinNavigationalElements": [],
+		"TweekiSkinNavigationalElements": ["EDIT-EXT"],
 		"TweekiSkinSpecialElements": {
 			"FIRSTHEADING": "self::renderFirstHeading",
 			"TOC": "self::renderTOC",

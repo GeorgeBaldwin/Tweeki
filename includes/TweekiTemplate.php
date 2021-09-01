@@ -259,7 +259,6 @@ class TweekiTemplate extends BaseTemplate {
 			}
 
 			switch ( $element ) {
-
 				case 'EDIT':
 					$views = $this->data['view_urls'];
 					if(count( $views ) > 0) {
@@ -398,7 +397,9 @@ class TweekiTemplate extends BaseTemplate {
 				case 'TOOLBOX':
 					$items = array_reverse($this->getToolbox());
 					$divideditems = [];
+							
 					$html = (wfMessage( 'tweeki-toolbox' )->plain() == "") ? wfMessage( 'toolbox' )->plain() : wfMessage( 'tweeki-toolbox' )->plain();
+					$html = $html.'<span class="tweeki-username">Page Actions</span>';
 					foreach($items as $key => $item) {
 						if(!isset( $item['text'] ) ) {
 							$item['text'] = wfMessage( isset( $item['msg'] ) ? $item['msg'] : $key )->text();
@@ -494,7 +495,18 @@ class TweekiTemplate extends BaseTemplate {
 						return [ $button ];
 					}
 					break;
-
+				case 'HISTORY':
+					$button = null;
+					$actions = $this->data['view_urls'];
+					if( isset( $actions['history'] )  ) {
+						$button = $actions['history'];
+					} 
+					if( !is_null( $button ) ) {
+						$button['options'] = [ 'wrapperid' => $button['id'] ];
+						unset( $button['id'] );
+						return [ $button ];
+					}
+					break;
 				case 'ICONWATCH':
 					$button = null;
 					$watch = $this->data['watch_urls'];
@@ -1046,7 +1058,7 @@ class TweekiTemplate extends BaseTemplate {
 		if ( $this->checkVisibility( 'footer' ) ) { ?>
 			<footer id="footer" role="contentinfo" class="footer <?php $this->msg( 'tweeki-footer-class' ); ?>"<?php $this->html( 'userlangattributes' ) ?>>
 				<div class="<?php $this->msg( 'tweeki-container-class' ); ?>">
-					<div class="row">
+					<div class="col">
 						<?php $this->buildItems( wfMessage( 'tweeki-footer' )->plain(), $options, 'footer' ); ?>
 					</div>
 				</div>
@@ -1161,7 +1173,8 @@ class TweekiTemplate extends BaseTemplate {
 	 */
 	function renderTOC( $skin, $context ) {
 		if( $context == 'sidebar-left' || $context == 'sidebar-right' ) {
-			echo '<div id="tweekiTOC"></div>';
+			//echo '<div id="tweekiTOC"></div>';
+			//Add last update here??
 		} else {
 			echo '<li class="nav dropdown" id="tweekiDropdownTOC"><a id="n-toc" class="dropdown-toggle" data-toggle="dropdown" href="#">' . wfMessage( 'Toc' )->text() . '<span class="caret"></span></a><ul class="dropdown-menu pull-right" role="menu" id="tweekiTOC"><li><a href="#">' . wfMessage( 'tweeki-toc-top' )->text() . '</a></li><li class="divider"></li></ul></li>';
 		}

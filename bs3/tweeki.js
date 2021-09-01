@@ -31,7 +31,6 @@ jQuery( function( $ ) {
 
 	// fade in initially hidden sticky footer
 	checkFooter();
-	$( '#footer.footer-sticky' ).animate( { opacity: 1 }, 1000 );
 
 	// correct sticky footer on resize
 	$(window).resize(function() {
